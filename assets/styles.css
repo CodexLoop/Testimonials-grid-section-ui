@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Global Variables */
+
+:root {
+    --purple-50: hsl(260, 100%, 95%);
+    --purple-300: hsl(264, 82%, 80%);
+    --purple-500: hsl(263, 55%, 52%);
+
+    --white: hsl(0, 0%, 100%);
+    --grey-100: hsl(214, 17%, 92%);
+    --grey-200: hsl(0, 0%, 81%);
+    --grey-400: hsl(224, 10%, 45%);
+    --grey-500: hsl(217, 19%, 35%);
+    --dark-blue: hsl(219, 29%, 14%);
+    --black: hsl(0, 0%, 7%);
+
+    --body-copy: 13px;
+
+    --regular: 500;
+    --bold: 600;
+
+    --media-mobile: 375px;
+    --media-desktop: 1440px;
+}
+
+
+/* Global styles */
+
+html {box-sizing: border-box;}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: initial;
+}
+
+body {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    background-color: var(--purple-50);
+    font-size: var(--body-copy);
+    color: var(--black);
+}
+
+
+/* Main Section: Mobile first! */
+
+.wrapper {
+    display: grid;
+    grid-template-columns: minmax(250px, 350px);
+    grid-template-rows: repeat(5, min-content);
+    justify-content: center;
+
+    grid-template-areas: 
+        "card1"
+        "card2"
+        "card3"
+        "card4"
+        "card5"
+    ;
+        
+    width: 80dvw;
+    min-height: 100dvh;
+    margin: auto;
+    margin-block: 4rem;
+    gap: 40px;
+}
+
+.card {
+    display: grid;
+    grid-template-rows: repeat(3, min-content);
+    grid-gap: 1.5rem;
+    padding: 2rem;
+    border-radius: 8px;
+    color: var(--white);
+    box-shadow: 1rem 1rem 2rem var(--grey-200);
+}
+
+.card .profile__info {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.card img {
+    border-radius: 50%;
+    width: 32px;
+}
+
+.card #quote {
+    display: none;
+}
+
+.card .heading {
+    line-height: 1.5;
+    font-weight: var(--regular);
+    font-size: 18px;    
+}
+
+.card h1 {
+    font-weight: var(--bold);
+    font-size: 18px;
+}
+.card p {
+    line-height: 1.75;
+}
+
+.card:first-child {
+    grid-area: card1;
+    background-color: var(--purple-500);
+}
+.card:nth-child(2) {
+    grid-area: card2;
+    background-color: var(--grey-500);
+}
+.card:nth-child(3) {
+    grid-area: card3;
+    background-color: var(--white);
+    color: var(--grey-500);
+}
+.card:nth-child(4) {
+    grid-area: card4;
+    background-color: var(--dark-blue);
+}
+.card:nth-child(5) {
+    grid-area: card5;
+    background-color: var(--white);
+    color: var(--grey-500);
+}
+
+.card:first-child .profile__info img {
+    border: 3px solid var(--purple-300);
+}
+.card:nth-child(4) img {
+    border: 3px solid var(--purple-500);
+}
+
+
+/* Media Queries for larger screens */
+
+:root {--body-copy: 10px;}
+
+@media only screen and (min-width: 720px) {
+    .wrapper {
+        grid-template-columns: repeat(2, minmax(240px, 320px));
+        grid-template-rows: repeat(3, min-content);
+
+        grid-template-areas: 
+            "card1 card2"
+            "card1 card5"
+            "card4 card5"
+            "card3 ."
+        ;
+        
+        gap: 20px;
+    }
+
+    .card {
+        position: relative;
+        gap: 12px;
+        padding: 20px;
+    }
+    .card .profile__info {gap: 8px;}
+
+    .card .heading {
+        line-height: 1;
+        font-size: var(--body-copy);
+    }
+    
+    .card #quote {
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 4rem;
+        border-radius: 0;
+        width: 100px;
+    }
+
+    .card h1 {
+        font-size: 16px;
+        z-index: 1;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .wrapper {
+        grid-template-columns: repeat(2, minmax(150px, 1fr)) repeat(2, 200px);
+        grid-template-rows: repeat(2, min-content);
+
+        grid-template-areas:
+            "card1 card1 card2 card5"
+            "card3 card4 card4 card5"
+        ;
+    }
+}
